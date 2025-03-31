@@ -22,7 +22,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint . --fix",
     "prettier": "prettier --write .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
