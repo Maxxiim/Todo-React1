@@ -5,7 +5,10 @@ import Main from '../main/main'
 import '../app/app.css'
 
 function App() {
-  const tasks = []
+  const tasks = [
+    { id: 1, text: 'test1', status: false, createdAt: Date.now() },
+    { id: 2, text: 'test2', status: false, createdAt: Date.now() },
+  ]
 
   const [allTasks, setAllTasks] = useState([...tasks])
   const [activeFilter, setActiveFilter] = useState('all')
@@ -53,8 +56,7 @@ function App() {
   }
 
   const allDeleteTask = () => {
-    setAllTasks(allTasks.splice(0, allTasks.length))
-    setAllTasks([...allTasks])
+    setAllTasks(allTasks.filter((task) => !task.status))
   }
 
   const changeTaskStatus = (id) => {
