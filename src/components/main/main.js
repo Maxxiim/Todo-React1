@@ -6,6 +6,7 @@ import Footer from '../footer/footer'
 import '../main/main.css'
 
 function Main({
+  toggleStartPause,
   updateTaskId,
   updateTaskText,
 
@@ -21,6 +22,7 @@ function Main({
   return (
     <div className="main">
       <TaskList
+        toggleStartPause={toggleStartPause}
         updateTaskText={updateTaskText}
         updateTaskId={updateTaskId}
         clickBtnEdit={clickBtnEdit}

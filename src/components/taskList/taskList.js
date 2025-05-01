@@ -5,17 +5,27 @@ import Task from '../task/task'
 
 import '../taskList/taskList.css'
 
-function TaskList({ updateTaskText, updateTaskId, clickBtnEdit, tasks, deleteTask, changeTaskStatus }) {
+function TaskList({
+  toggleStartPause,
+  updateTaskText,
+  updateTaskId,
+  clickBtnEdit,
+  tasks,
+  deleteTask,
+  changeTaskStatus,
+}) {
   return (
     <ul className="todo-list">
       {tasks.map((task) => {
         return (
           <Task
+            toggleStartPause={toggleStartPause}
             updateTaskText={updateTaskText}
             updateTaskId={updateTaskId}
             clickBtnEdit={clickBtnEdit}
             key={task.id}
             task={task}
+            playing={task.playing}
             text={task.text}
             status={task.status}
             edit={task.edit}

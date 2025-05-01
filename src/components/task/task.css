@@ -1,3 +1,38 @@
+.timer {
+  font-size: 13px;
+  color: gray;
+  margin-right: 10px;
+}
+
+.timer__text {
+  margin-left: 20px;
+  display: inline-flex;
+}
+
+.todo-list li .icon-pause,
+.todo-list li .icon-play {
+  font-size: 18px;
+  width: 18px;
+  margin: auto;
+}
+
+.todo-list li .icon-play {
+  font-size: 15px;
+}
+
+
+.todo-list li .icon-pause {
+  font-size: 15px;
+}
+
+.icon-pause:after {
+  content: '⏸';
+}
+
+.icon-play:after {
+  content: '▶';
+}
+
 .todo-list-item {
   position: relative;
   font-size: 24px;
@@ -44,7 +79,6 @@
 .toggle {
   text-align: center;
   width: 40px;
-  /* auto, since non-WebKit browsers doesn't support input styling */
   height: auto;
   position: absolute;
   top: 0;
@@ -68,7 +102,7 @@
   bottom: 100%;
 }
 
-.toggle-all + label {
+.toggle-all+label {
   width: 60px;
   height: 34px;
   font-size: 0;
@@ -79,14 +113,14 @@
   transform: rotate(90deg);
 }
 
-.toggle-all + label:before {
+.toggle-all+label:before {
   content: '❯';
   font-size: 22px;
   color: #e6e6e6;
   padding: 10px 27px 10px 27px;
 }
 
-.toggle-all:checked + label:before {
+.toggle-all:checked+label:before {
   color: #737373;
 }
 
@@ -94,7 +128,7 @@
   opacity: 0;
 }
 
-.toggle + label {
+.toggle+label {
   background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E');
   background-repeat: no-repeat;
   background-position: center left;
@@ -119,21 +153,20 @@
   opacity: 0;
 }
 
-.toggle + label {
+.toggle+label {
   background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E');
   background-repeat: no-repeat;
   background-position: center left;
 }
 
-.toggle:checked + label {
+.toggle:checked+label {
   background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E');
 }
 
 .todo-list-item label {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 15px 85px 15px 60px;
+  padding: 15px 75px 15px 60px;
 }
 
 .todo-list-item label .created {
@@ -143,6 +176,8 @@
 }
 
 .todo-list-item label .description {
+  width: 100%;
+  max-width: 157px;
   cursor: pointer;
   user-select: none;
   word-break: break-all;
@@ -177,6 +212,7 @@
 
 .todo-list-item .icon-destroy {
   right: 10px;
+  margin: auto;
 }
 
 .todo-list-item .icon-destroy:after {
@@ -184,6 +220,7 @@
 }
 
 .todo-list-item .icon-edit {
+  margin: auto;
   font-size: 19px;
   right: 45px;
 }

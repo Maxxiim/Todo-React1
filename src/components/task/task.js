@@ -5,11 +5,13 @@ import { formatDistanceToNow } from 'date-fns'
 import '../task/task.css'
 
 function Task({
+  toggleStartPause,
   updateTaskId,
   updateTaskText,
-
   clickBtnEdit,
+
   task,
+  playing,
   text,
   status,
   edit,
@@ -37,9 +39,21 @@ function Task({
           >
             {text}
           </span>
-
           {/* время создания задачи */}
           <span className="created">
+            <span className="timer">
+              <button
+                className={`icon ${playing ? 'icon-pause' : 'icon-play'}`}
+                onClick={(event) => {
+                  event.stopPropagation()
+                  toggleStartPause(task.id)
+                }}
+              ></button>
+              <span className="timer__text">
+                {task.minutes < 10 ? `0${task.minutes}` : task.minutes}:
+                {task.seconds < 10 ? `0${task.seconds}` : task.seconds}
+              </span>
+            </span>
             created{' '}
             {formatDistanceToNow(new Date(task.createdAt), {
               includeSeconds: true,
