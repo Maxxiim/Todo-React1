@@ -86,3 +86,11 @@ input::input-placeholder {
   font-weight: 300;
   color: rgba(0, 0, 0, 0.4);
 }
+
+
+.new-todo-form__error {
+  padding-left: 60px;
+  display: none;
+  color: red;
+  border-top: 1px solid red;
+}

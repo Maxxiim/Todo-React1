@@ -39,21 +39,44 @@ function App() {
   )
 
   const addTask = (text, minutesInput, secondsInput) => {
-    if (text.length === 0) return
+    const inputText = document.querySelector('.new-todo')
+    const messageError = document.querySelector('.new-todo-form__error')
+
+    const minutes = Number(minutesInput)
+    const seconds = Number(secondsInput)
+
+    if (text.trim().length === 0) {
+      messageError.style.display = 'block'
+      messageError.innerText = 'Поле не должно быть пустым'
+      return
+    }
+
+    if (minutes <= 0 && seconds <= 0) {
+      messageError.style.display = 'block'
+      messageError.innerText = 'Неверное время'
+      return
+    }
+
     const maxId = allTasks.length > 0 ? Math.max(...allTasks.map((item) => item.id)) : 0
 
     const newTask = {
       id: maxId + 1,
-      text: text,
+      text: text.trim(),
       playing: false,
-      minutes: minutesInput,
-      seconds: secondsInput,
+      minutes,
+      seconds,
       status: false,
       edit: false,
       createdAt: Date.now(),
     }
 
     setAllTasks([...allTasks, newTask])
+    inputText.value = ''
+    setMinutesInput('')
+    setSecondsInput('')
+
+    messageError.style.display = 'none'
+    messageError.innerText = ''
   }
 
   const deleteTask = (id) => {
