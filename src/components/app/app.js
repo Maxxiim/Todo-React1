@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import { useRef, useCallback, useEffect, useState, useMemo } from 'react'
 
 import Header from '../header/header'
 import Main from '../main/main'
 import '../app/app.css'
 
 function App() {
+  const inputTextRef = useRef(null)
+  const messageErrorRef = useRef(null)
+
   const tasks = [
     { id: 1, text: 'test1', edit: false, playing: false, minutes: 6, seconds: 0, status: false, createdAt: Date.now() },
     { id: 2, text: 'test2', edit: false, playing: false, minutes: 1, seconds: 0, status: false, createdAt: Date.now() },
@@ -34,13 +37,15 @@ function App() {
     setAllTasks(allTasks.map((task) => (task.id === id ? { ...task, edit: !task.edit } : task)))
   }
 
-  const filteredTask = allTasks.filter((task) =>
-    activeFilter === 'all' ? true : activeFilter === 'active' ? !task.status : task.status
-  )
+  const filteredTask = useMemo(() => {
+    return allTasks.filter((task) =>
+      activeFilter === 'all' ? true : activeFilter === 'active' ? !task.status : task.status
+    )
+  }, [allTasks, activeFilter])
 
-  const addTask = (text, minutesInput, secondsInput) => {
-    const inputText = document.querySelector('.new-todo')
-    const messageError = document.querySelector('.new-todo-form__error')
+  const addTask = useCallback((text, minutesInput, secondsInput) => {
+    const inputText = inputTextRef.current
+    const messageError = messageErrorRef.current
 
     const minutes = Number(minutesInput)
     const seconds = Number(secondsInput)
@@ -77,21 +82,23 @@ function App() {
 
     messageError.style.display = 'none'
     messageError.innerText = ''
-  }
+  }, [])
 
-  const deleteTask = (id) => {
-    setAllTasks(allTasks.filter((task) => task.id !== id))
-  }
+  const deleteTask = useCallback((id) => {
+    setAllTasks((tasks) => tasks.filter((task) => task.id !== id))
+  }, [])
 
-  const allDeleteTask = () => {
-    setAllTasks(allTasks.filter((task) => !task.status))
-  }
+  const allDeleteTask = useCallback(() => {
+    setAllTasks((tasks) => tasks.filter((task) => !task.status))
+  }, [])
 
-  const changeTaskStatus = (id) => {
-    setAllTasks(allTasks.map((item) => (item.id === id ? { ...item, status: !item.status } : item)))
-  }
+  const changeTaskStatus = useCallback((id) => {
+    setAllTasks((tasks) => tasks.map((item) => (item.id === id ? { ...item, status: !item.status } : item)))
+  }, [])
 
-  const listTasks = () => allTasks.filter((task) => !task.status).length
+  const listTasks = useMemo(() => {
+    return allTasks.filter((task) => !task.status).length
+  }, [allTasks])
 
   const filterTask = (filter) => {
     setActiveFilter(filter)
@@ -124,13 +131,15 @@ function App() {
     return () => clearInterval(interval)
   }, [allTasks])
 
-  const toggleStartPause = (id) => {
+  const toggleStartPause = useCallback((id) => {
     setAllTasks((tasks) => tasks.map((task) => (task.id === id ? { ...task, playing: !task.playing } : task)))
-  }
+  }, [])
 
   return (
     <div className="todoapp">
       <Header
+        inputTextRef={inputTextRef}
+        messageErrorRef={messageErrorRef}
         minutesInput={minutesInput}
         secondsInput={secondsInput}
         setSecondsInput={setSecondsInput}

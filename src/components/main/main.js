@@ -1,5 +1,3 @@
-import React from 'react'
-
 import TaskList from '../taskList/taskList'
 import Footer from '../footer/footer'
 

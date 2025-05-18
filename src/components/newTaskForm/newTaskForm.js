@@ -2,7 +2,15 @@ import React from 'react'
 
 import '../newTaskForm/newTaskForm.css'
 
-function NewTaskForm({ addTask, minutesInput, secondsInput, setMinutesInput, setSecondsInput }) {
+function NewTaskForm({
+  messageErrorRef,
+  inputTextRef,
+  addTask,
+  minutesInput,
+  secondsInput,
+  setMinutesInput,
+  setSecondsInput,
+}) {
   return (
     <>
       <form
@@ -10,12 +18,12 @@ function NewTaskForm({ addTask, minutesInput, secondsInput, setMinutesInput, set
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
             e.preventDefault()
-            const text = document.querySelector('.new-todo').value
+            const text = inputTextRef.current.value
             addTask(text, Number(minutesInput), Number(secondsInput))
           }
         }}
       >
-        <input className="new-todo" placeholder="What needs to be done?" autoFocus />
+        <input className="new-todo" ref={inputTextRef} placeholder="What needs to be done?" autoFocus />
         <input
           className="new-todo-form__timer"
           type="number"
@@ -31,7 +39,7 @@ function NewTaskForm({ addTask, minutesInput, secondsInput, setMinutesInput, set
           placeholder="Sec"
         />
       </form>
-      <p className="new-todo-form__error"></p>
+      <p className="new-todo-form__error" ref={messageErrorRef}></p>
     </>
   )
 }

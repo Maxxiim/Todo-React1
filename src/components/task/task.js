@@ -1,4 +1,3 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import { formatDistanceToNow } from 'date-fns'
 
@@ -28,7 +27,6 @@ function Task({
       <div className="view">
         <input className="toggle" type="checkbox" onChange={() => changeTaskStatus(task.id)} checked={status} />
 
-        {/* Текст поля input */}
         <label>
           <span
             className="description"
@@ -39,7 +37,6 @@ function Task({
           >
             {text}
           </span>
-          {/* время создания задачи */}
           <span className="created">
             <span className="timer">
               <button
@@ -62,7 +59,6 @@ function Task({
           </span>
         </label>
 
-        {/* кнопка для редактирования текста задачи */}
         <button
           className="icon icon-edit"
           aria-label="btn"
@@ -72,7 +68,6 @@ function Task({
           }}
         ></button>
 
-        {/* кнопка для удаления задачи */}
         <button
           className="icon icon-destroy"
           aria-label="btn"
@@ -83,7 +78,6 @@ function Task({
         ></button>
       </div>
 
-      {/* поле input при изменении текст */}
       <input
         type="text"
         className="edit"

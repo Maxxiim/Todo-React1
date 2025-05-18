@@ -4,11 +4,21 @@ import NewTaskForm from '../newTaskForm/newTaskForm'
 
 import '../header/header.css'
 
-function Header({ setMinutesInput, setSecondsInput, minutesInput, secondsInput, addTask }) {
+function Header({
+  inputTextRef,
+  messageErrorRef,
+  setMinutesInput,
+  setSecondsInput,
+  minutesInput,
+  secondsInput,
+  addTask,
+}) {
   return (
     <header className="header">
       <h1 className="header__title">todos</h1>
       <NewTaskForm
+        inputTextRef={inputTextRef}
+        messageErrorRef={messageErrorRef}
         minutesInput={minutesInput}
         secondsInput={secondsInput}
         setMinutesInput={setMinutesInput}
