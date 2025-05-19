@@ -27,7 +27,7 @@ function Task({
       <div className="view">
         <input className="toggle" type="checkbox" onChange={() => changeTaskStatus(task.id)} checked={status} />
 
-        <label>
+        <div className="label">
           <span
             className="description"
             onClick={(e) => {
@@ -57,7 +57,7 @@ function Task({
             })}{' '}
             ago
           </span>
-        </label>
+        </div>
 
         <button
           className="icon icon-edit"
