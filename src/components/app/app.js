@@ -93,7 +93,9 @@ function App() {
   }, [])
 
   const changeTaskStatus = useCallback((id) => {
-    setAllTasks((tasks) => tasks.map((item) => (item.id === id ? { ...item, status: !item.status } : item)))
+    setAllTasks((tasks) =>
+      tasks.map((item) => (item.id === id ? { ...item, status: !item.status, playing: false } : item))
+    )
   }, [])
 
   const listTasks = useMemo(() => {
